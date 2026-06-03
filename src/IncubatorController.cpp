@@ -1,18 +1,23 @@
 #include "IncubatorController.h"
 
-IncubatorController::IncubatorController(IHeater& heater,
-                                         ITemperatureSensor& sensor)
-    : heater(heater), sensor(sensor) {}
+IncubatorController::IncubatorController(
+    IHeater& heater,
+    ITemperatureSensor& sensor
+)
+    : heater(heater), sensor(sensor)
+{
+}
 
-void IncubatorController::update() {
+void IncubatorController::update()
+{
     double temperature = sensor.readTemperature();
 
-    if (!heaterOn && temperature < LOWER_THRESHOLD) {
+    if (temperature < 37.5)
+    {
         heater.turnOn();
-        heaterOn = true;
     }
-    else if (heaterOn && temperature > UPPER_THRESHOLD) {
+    else
+    {
         heater.turnOff();
-        heaterOn = false;
     }
 }

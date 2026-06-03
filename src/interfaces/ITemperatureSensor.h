@@ -6,3 +6,6 @@ public:
 
     virtual double readTemperature() const = 0;
 };
+
+
+
