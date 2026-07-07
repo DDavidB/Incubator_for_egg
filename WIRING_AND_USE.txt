@@ -1,0 +1,64 @@
+Incubator_for_egg Wiring and Use Instructions
+
+1) Overview
+-------------
+This project is designed for an Arduino Uno-based egg incubator controller with:
+- Temperature sensor
+- Humidity sensor
+- Heater control output
+- Humidifier control output
+
+If you use an Arduino, the code in this repository is the logical controller side. The physical Arduino wiring should match the pin assignments in your sketch.
+
+2) Suggested Arduino connections
+-----------------------------------
+Use a common ground and a stable 5V supply for sensors and the Arduino.
+
+Temperature sensor (example: LM35 analog):
+- VCC to 5V on Arduino
+- GND to GND on Arduino
+- DATA to analog pin A0
+
+Humidity sensor (example: analog humidity module):
+- VCC to 5V on Arduino
+- GND to GND on Arduino
+- DATA to analog pin A1
+
+Heater control (use a relay module, MOSFET, or transistor driver):
+- Relay/Vendor input to digital pin D8
+- Relay VCC to 5V (or external power per module spec)
+- Relay GND to Arduino GND
+- Heater power on relay output side should be connected to an external power source and the heater element
+
+Humidifier control (use a relay or transistor driver):
+- Relay/Vendor input to digital pin D9
+- Relay VCC to 5V (or external power per module spec)
+- Relay GND to Arduino GND
+- Humidifier power on relay output side should use the external power source and humidifier element
+
+Important: do not power the heater or humidifier directly from the Arduino pins. Use a relay or MOSFET driver and an external power source for high current loads.
+
+3) Running the project
+------------------------
+This repository is configured as a C++ project with CMake and unit tests.
+
+Build steps:
+1. Open PowerShell in the project folder.
+2. Run:
+   cmake -S . -B build
+   cmake --build build --config Debug
+
+Run tests:
+   ctest --test-dir build --output-on-failure
+
+4) Uploading firmware to Arduino
+----------------------------------
+This repository does not currently include a complete Arduino sketch (.ino) file.
+To run the incubator on Arduino Uno, create or add a sketch that reads the temperature/humidity sensors and controls the heater/humidifier outputs using the pin mapping above.
+
+5) Safety notes
+-----------------
+- Always use a common ground between Arduino and sensors/controllers.
+- Use proper power supplies for the heater and humidifier.
+- Isolate high-voltage or high-current circuits with a relay or MOSFET driver.
+- Verify correct pin wiring before applying power.
