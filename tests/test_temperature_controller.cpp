@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN
-#include "../external/Catch2/single_include/catch2/catch.hpp"
+#include "../external/Catch2/extras/catch_amalgamated.hpp"
 
 #include "../src/controllers/TemperatureController.h"
 #include "../mocks/MockHeater.h"

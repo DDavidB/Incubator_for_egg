@@ -1,7 +1,8 @@
 add_executable(runTests
     HeaterTest.cpp
-    IncubatorControllerTest.cpp
     HumidityControllerTest.cpp
+    IncubatorControllerTest.cpp
+    SanityTest.cpp
 )
 
 target_link_libraries(runTests
