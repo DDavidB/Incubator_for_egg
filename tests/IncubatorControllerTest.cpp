@@ -48,3 +48,19 @@ TEST(IncubatorControllerTest, TurnsHeaterOffWhenTemperatureIsHigh) {
 
     EXPECT_FALSE(heater.isOn());
 }
+
+TEST(IncubatorControllerTest, KeepsHeaterOnInsideSafeRange) {
+    FakeHeater heater;
+    FakeTemperatureSensor sensor(36.5);
+
+    IncubatorController controller(heater, sensor);
+
+    controller.update();
+
+    EXPECT_TRUE(heater.isOn());
+
+    sensor.setTemperature(37.6);
+    controller.update();
+
+    EXPECT_TRUE(heater.isOn());
+}

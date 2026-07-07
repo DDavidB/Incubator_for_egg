@@ -1,7 +1,8 @@
 add_executable(runTests
     HeaterTest.cpp
     IncubatorControllerTest.cpp
- "HumidityControllerTest.cpp")
+    HumidityControllerTest.cpp
+)
 
 target_link_libraries(runTests
     incubator_core
@@ -10,9 +11,3 @@ target_link_libraries(runTests
 )
 
 add_test(NAME AllTests COMMAND runTests)
-
-add_executable(runTests
-    HeaterTest.cpp
-    IncubatorControllerTest.cpp
-    HumidityControllerTest.cpp
-)
